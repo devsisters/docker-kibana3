@@ -20,5 +20,3 @@ ADD		 ./start-kibana.sh /src/start-kibana.sh
 EXPOSE		 :8080
 
 CMD		 ["sh", "-ex", "/src/start-kibana.sh"]
-
-# vim:ts=8:noet:
