@@ -17,6 +17,6 @@ ADD		 ./nginx.conf /etc/nginx/nginx.conf
 ADD		 ./start-kibana.sh /src/start-kibana.sh
 
 # Nginx port
-EXPOSE		 :8080
+EXPOSE		 8080
 
 CMD		 ["sh", "-ex", "/src/start-kibana.sh"]
