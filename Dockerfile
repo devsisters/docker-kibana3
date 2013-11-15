@@ -1,4 +1,4 @@
-# DOCKER-VERSION 0.4.0
+# DOCKER-VERSION 0.6.0
 
 FROM		 ubuntu:12.04
 MAINTAINER	 Andrew Hodgson <andrew@ratiopartners.com>
@@ -9,8 +9,9 @@ RUN		 apt-get update -y
 RUN		 apt-get install -y -qq git nginx-full
 
 # Install kibana
+ENV              KIBANA_VERSION v3.0.0milestone4
 RUN		 mkdir /src
-RUN		 git clone https://github.com/elasticsearch/kibana.git /src/kibana
+RUN		 git clone https://github.com/elasticsearch/kibana/tree/$KIBANA_VERSION /src/kibana
 
 # Add config
 ADD		 ./nginx.conf /etc/nginx/nginx.conf
