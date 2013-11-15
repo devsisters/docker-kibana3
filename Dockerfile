@@ -10,8 +10,10 @@ RUN		 apt-get install -y -qq git nginx-full
 
 # Install kibana
 ENV              KIBANA_VERSION v3.0.0milestone4
-RUN		 mkdir /src
-RUN		 git clone https://github.com/elasticsearch/kibana/tree/$KIBANA_VERSION /src/kibana
+RUN		 mkdir -p /src/kibana
+RUN		 cd /src/kibana
+RUN              curl https://download.elasticsearch.org/kibana/kibana/kibana-${KIBANA_VERSION}.tar.gz |
+                 tar xz --strip-components=1
 
 # Add config
 ADD		 ./nginx.conf /etc/nginx/nginx.conf
