@@ -1,25 +1,24 @@
 # DOCKER-VERSION 0.6.0
 
-FROM		 ubuntu:12.04
-MAINTAINER	 Andrew Hodgson <andrew@ratiopartners.com>
+FROM ubuntu:12.04
+MAINTAINER Andrew Hodgson <andrew@ratiopartners.com>
 
 # Install dependencies
-RUN		 echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' >> /etc/apt/sources.list
-RUN		 apt-get update -y
-RUN		 apt-get install -y -qq git nginx-full
+RUN echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' > /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y -qq git nginx-full
 
 # Install kibana
-ENV              KIBANA_VERSION v3.0.0milestone4
-RUN		 mkdir -p /src/kibana
-RUN		 cd /src/kibana
-RUN              curl https://download.elasticsearch.org/kibana/kibana/kibana-${KIBANA_VERSION}.tar.gz |
-                 tar xz --strip-components=1
+RUN mkdir -p /src/kibana
+RUN cd /src/kibana
+RUN curl -Lks "https://download.elasticsearch.org/kibana/kibana/kibana-v3.0.0milestone4.tar.gz" | tar xz --strip-components=1
 
 # Add config
-ADD		 ./nginx.conf /etc/nginx/nginx.conf
-ADD		 ./start-kibana.sh /src/start-kibana.sh
+ADD ./nginx.conf /etc/nginx/nginx.conf
+ADD ./start-kibana.sh /src/start-kibana.sh
 
 # Nginx port
-EXPOSE		 8080
+EXPOSE 8080
 
-CMD		 ["sh", "-ex", "/src/start-kibana.sh"]
+CMD ["sh", "-ex", "/src/start-kibana.sh"]
