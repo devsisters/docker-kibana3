@@ -4,7 +4,7 @@ FROM ubuntu:12.04
 MAINTAINER Andrew Hodgson <andrew@ratiopartners.com>
 
 # Install dependencies
-RUN echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' > /etc/apt/sources.list
+RUN echo 'deb http://us.archive.ubuntu.com/ubuntu/ precise universe' >> /etc/apt/sources.list
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y -qq git nginx-full
