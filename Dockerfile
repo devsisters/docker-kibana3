@@ -13,7 +13,7 @@ RUN apt-get install -y -qq curl git nginx-full
 RUN mkdir -p /src/kibana
 RUN cd /src/kibana
 RUN curl -sO https://download.elasticsearch.org/kibana/kibana/kibana-3.0.0milestone4.tar.gz
-RUN tar --strip-components=1 -xzf kibana-v3.0.0milestone4.tar.gz
+RUN tar --strip-components=1 -xzf kibana-3.0.0milestone4.tar.gz
 
 # Add config
 ADD ./nginx.conf /etc/nginx/nginx.conf
