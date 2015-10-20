@@ -20,6 +20,7 @@ function (Settings) {
   return new Settings({
     elasticsearch: "${ES_PROTO}://${ES_HOST}:${ES_PORT}",
     kibana_index: "kibana-int",
+    default_route: '/dashboard/file/logstash.json',
     panel_names: [
       'histogram',
       'map',
@@ -52,5 +53,6 @@ EOS
 if [ -d ${LOCAL_KIBANA_VOLUME} ]; then
   rsync -av ${LOCAL_KIBANA_VOLUME}/* ${CONTAINER_KIBANA_ROOT}/src/app/
 fi
+mv /src/kibana/app/dashboards/logstash.json /src/kibana/app/dashboards/default.json
 
 exec /usr/sbin/nginx -c /etc/nginx/nginx.conf
