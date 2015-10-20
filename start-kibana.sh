@@ -12,8 +12,7 @@ test -n "${ES_PORT}"  || exit 1
 
 CONTAINER_KIBANA_ROOT=/src/kibana
 LOCAL_KIBANA_VOLUME=/var/lib/kibana
-
-cat > ${CONTAINER_KIBANA_ROOT}/src/config.js <<EOS
+cat > ${CONTAINER_KIBANA_ROOT}/config.js <<EOS
 define(['settings'],
 function (Settings) {
   "use strict";
@@ -55,4 +54,3 @@ if [ -d ${LOCAL_KIBANA_VOLUME} ]; then
 fi
 
 exec /usr/sbin/nginx -c /etc/nginx/nginx.conf
-
